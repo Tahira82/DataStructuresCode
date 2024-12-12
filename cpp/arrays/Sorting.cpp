@@ -75,14 +75,6 @@ int main() {
   }
   cout << endl;
 
-  cout << "The sorted array is: ";
-  for (int i = 0; i < size; i++) {
-
-    cout << arr[i] << " ";
-
-  }
-  cout << endl;
-
   int * SSort = objSort.SelectionSort(arr, size);
   cout << "The selection sorted array is: ";
   for (int i = 0; i < size; i++) {
