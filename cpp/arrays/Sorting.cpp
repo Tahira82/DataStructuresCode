@@ -4,18 +4,55 @@
 
 #include "Sorting.h"
 
-int * Sorting:: BubbleSort(int array[], int sizeOfArray){
+int * Sorting::BubbleSort(const int array[], int sizeOfArray){
+  // Time complexity = O(n^2)
+  // (n-1) + (n-2) + ....+ 1 = n(n-1)/2
+  int * arrayOut =  new int[sizeOfArray];
+  for (int k = 0; k < sizeOfArray; k++) {
+    arrayOut[k] = array[k];
+  }
+
   for(int k = 0; k < sizeOfArray - 1; k++) {
+
+    bool bAlreadySorted = true;
+
     for(int i = 0; i < sizeOfArray - (k + 1); i++){
+
       int j = i + 1;
-      if (array[i] > array[j]) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+      if (arrayOut[i] > arrayOut[j]) {
+        int temp = arrayOut[i];
+        arrayOut[i] = arrayOut[j];
+        arrayOut[j] = temp;
+
+        bAlreadySorted = false;
+      }
+    }
+
+    if (bAlreadySorted)
+      return arrayOut;
+  }
+  return arrayOut;
+}
+
+int * Sorting::SelectionSort(const int array[], int sizeOfArray) {
+  // Time complexity = O(n^2)
+  // (n-1) + (n-2) + ....+ 1 = n(n-1)/2
+
+  int * arrayOut =  new int[sizeOfArray];
+  for (int k = 0; k < sizeOfArray; k++) {
+    arrayOut[k] = array[k];
+  }
+
+  for(int i = 0; i < (sizeOfArray - 1); i++) {
+    for(int j = i + 1; j < sizeOfArray; j++) {
+      if (arrayOut[i] > arrayOut[j]) {
+        int temp = arrayOut[i];
+        arrayOut[i] = arrayOut[j];
+        arrayOut[j] = temp;
       }
     }
   }
-  return array;
+  return arrayOut;
 }
 
 int main() {
@@ -31,12 +68,34 @@ int main() {
     }
   Sorting objSort;
 
-  cout << "The sorted array is: ";
+  cout << "The bubble sorted array is: ";
+  int * Sort = objSort.BubbleSort(arr, size);
   for (int i = 0; i < size; i++) {
-    cout << objSort.BubbleSort(arr, size)[i] << " ";
+    cout << Sort[i] << " ";
   }
   cout << endl;
 
+  cout << "The sorted array is: ";
+  for (int i = 0; i < size; i++) {
 
+    cout << arr[i] << " ";
+
+  }
+  cout << endl;
+
+  int * SSort = objSort.SelectionSort(arr, size);
+  cout << "The selection sorted array is: ";
+  for (int i = 0; i < size; i++) {
+
+    cout << SSort[i] << " ";
+  }
+  cout << endl;
+
+  delete [] arr;
+  delete [] Sort;
+  delete [] SSort;
+  arr = nullptr;
+  Sort = nullptr;
+  SSort = nullptr;
   return 0;
 }

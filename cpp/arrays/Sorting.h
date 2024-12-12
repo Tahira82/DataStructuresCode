@@ -10,7 +10,10 @@ using namespace std;
 
 class Sorting {
 public:
-    int * BubbleSort(int array[], int sizeOfArray);
+
+    int * BubbleSort(const int array[], int sizeOfArray);
+    int * SelectionSort(const int array[], int sizeOfArray);
+
 };
 
 #endif //SORTING_H
